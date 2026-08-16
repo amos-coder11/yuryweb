@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none">
+  <!-- Hand -->
+  <ellipse cx="180" cy="320" rx="60" ry="35" fill="#c8956c" transform="rotate(-15 180 320)"/>
+  <rect x="120" y="280" width="80" height="25" rx="12" fill="#c8956c" transform="rotate(-20 160 292)"/>
+  <!-- Microphone body -->
+  <rect x="60" y="60" width="50" height="200" rx="25" fill="#2a2a2a"/>
+  <rect x="65" y="65" width="40" height="190" rx="20" fill="#1a1a1a"/>
+  <!-- Mic grille lines -->
+  <line x1="70" y1="90" x2="100" y2="90" stroke="#444" stroke-width="2"/>
+  <line x1="70" y1="110" x2="100" y2="110" stroke="#444" stroke-width="2"/>
+  <line x1="70" y1="130" x2="100" y2="130" stroke="#444" stroke-width="2"/>
+  <line x1="70" y1="150" x2="100" y2="150" stroke="#444" stroke-width="2"/>
+  <!-- YC flag -->
+  <rect x="110" y="80" width="120" height="70" rx="4" fill="#e6007e"/>
+  <text x="170" y="115" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-weight="bold" font-size="22">YC</text>
+  <text x="170" y="135" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="8" letter-spacing="2">NOTICIAS</text>
+  <!-- Flag pole connection -->
+  <rect x="108" y="145" width="4" height="30" fill="#888"/>
+  <!-- Mic stand -->
+  <rect x="78" y="260" width="14" height="100" fill="#333"/>
+  <ellipse cx="85" cy="365" rx="40" ry="8" fill="#222"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" fill="none">
+  <defs>
+    <linearGradient id="skin" x1="200" y1="100" x2="200" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c8956c"/>
+      <stop offset="1" stop-color="#a67550"/>
+    </linearGradient>
+    <linearGradient id="blazer" x1="200" y1="250" x2="200" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff1493"/>
+      <stop offset="1" stop-color="#e6007e"/>
+    </linearGradient>
+  </defs>
+  <!-- Hair -->
+  <ellipse cx="200" cy="130" rx="75" ry="85" fill="#1a1a1a"/>
+  <!-- Face -->
+  <ellipse cx="200" cy="160" rx="55" ry="65" fill="url(#skin)"/>
+  <!-- Neck -->
+  <rect x="175" y="210" width="50" height="40" fill="url(#skin)"/>
+  <!-- White top -->
+  <path d="M140 250 Q200 230 260 250 L270 320 Q200 300 130 320 Z" fill="#ffffff"/>
+  <!-- Blazer -->
+  <path d="M100 280 Q200 260 300 280 L320 600 L80 600 Z" fill="url(#blazer)"/>
+  <!-- Blazer lapels -->
+  <path d="M160 280 L200 320 L240 280 L220 380 L200 360 L180 380 Z" fill="#cc0066"/>
+</svg>

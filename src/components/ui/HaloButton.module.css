@@ -1,0 +1,293 @@
+.haloButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  text-decoration: none;
+  isolation: isolate;
+  transition: transform 0.2s ease;
+}
+
+.haloButton:hover {
+  transform: translateY(-1px);
+}
+
+.glowLayer {
+  position: absolute;
+  border-radius: 30px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auroraGlow {
+  inset: -10px -14px;
+  filter: blur(24px);
+  opacity: 0.45;
+}
+
+.outerRing {
+  inset: -3px -4px;
+  filter: blur(3px);
+}
+
+.innerGlow {
+  inset: -2px -3px;
+  filter: blur(2px);
+}
+
+.mainBorder {
+  inset: -1px -2px;
+  filter: blur(0.5px);
+}
+
+.glowLayer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  transition: transform 2s ease;
+}
+
+.auroraGlow::before {
+  transform: translate(-50%, -50%) rotate(60deg);
+  background-image: conic-gradient(
+    #000,
+    #402fb5 5%,
+    #000 38%,
+    #000 50%,
+    var(--yc-magenta) 60%,
+    #000 87%
+  );
+}
+
+.outerRing::before {
+  transform: translate(-50%, -50%) rotate(82deg);
+  filter: brightness(1.1);
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0),
+    #18116a,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 0) 50%,
+    #6e1b60,
+    rgba(0, 0, 0, 0) 60%
+  );
+}
+
+.innerGlow::before {
+  transform: translate(-50%, -50%) rotate(83deg);
+  filter: brightness(1.35);
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    #a099d8,
+    rgba(0, 0, 0, 0) 8%,
+    rgba(0, 0, 0, 0) 50%,
+    #dfa2da,
+    rgba(0, 0, 0, 0) 58%
+  );
+}
+
+.mainBorder::before {
+  transform: translate(-50%, -50%) rotate(70deg);
+  filter: brightness(1.25);
+  background-image: conic-gradient(
+    #1c191c,
+    #402fb5 5%,
+    #1c191c 14%,
+    #1c191c 50%,
+    var(--yc-magenta) 60%,
+    #1c191c 64%
+  );
+}
+
+.haloButton:hover .outerRing::before {
+  transform: translate(-50%, -50%) rotate(-98deg);
+}
+
+.haloButton:hover .auroraGlow::before {
+  transform: translate(-50%, -50%) rotate(-120deg);
+}
+
+.haloButton:hover .innerGlow::before {
+  transform: translate(-50%, -50%) rotate(-97deg);
+}
+
+.haloButton:hover .mainBorder::before {
+  transform: translate(-50%, -50%) rotate(-110deg);
+}
+
+.haloButton:focus-visible .outerRing::before {
+  transform: translate(-50%, -50%) rotate(442deg);
+  transition: transform 4s ease;
+}
+
+.haloButton:focus-visible .auroraGlow::before {
+  transform: translate(-50%, -50%) rotate(420deg);
+  transition: transform 4s ease;
+}
+
+.haloButton:focus-visible .innerGlow::before {
+  transform: translate(-50%, -50%) rotate(443deg);
+  transition: transform 4s ease;
+}
+
+.haloButton:focus-visible .mainBorder::before {
+  transform: translate(-50%, -50%) rotate(430deg);
+  transition: transform 4s ease;
+}
+
+.buttonInner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 30px;
+  background-color: #010201;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.md .buttonInner {
+  padding: 0.875rem 2rem;
+}
+
+.sm .buttonInner {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+}
+
+.primary .buttonInner {
+  color: var(--yc-magenta);
+}
+
+.primary:hover .buttonInner {
+  color: #fff;
+}
+
+.secondary .buttonInner {
+  color: #fff;
+}
+
+.secondary:hover .buttonInner {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Secondary — halos en blanco / plata */
+.secondary .auroraGlow::before {
+  background-image: conic-gradient(
+    #000,
+    #3d3a4f 5%,
+    #000 38%,
+    #000 50%,
+    #ffffff 60%,
+    #000 87%
+  );
+}
+
+.secondary .outerRing::before {
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0),
+    #2a2a35,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 0) 50%,
+    #888,
+    rgba(0, 0, 0, 0) 60%
+  );
+}
+
+.secondary .innerGlow::before {
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    #666,
+    rgba(0, 0, 0, 0) 8%,
+    rgba(0, 0, 0, 0) 50%,
+    #ccc,
+    rgba(0, 0, 0, 0) 58%
+  );
+}
+
+.secondary .mainBorder::before {
+  background-image: conic-gradient(
+    #1c191c,
+    #555 5%,
+    #1c191c 14%,
+    #1c191c 50%,
+    #fff 60%,
+    #1c191c 64%
+  );
+}
+
+.solid .buttonInner {
+  color: #fff;
+  background: linear-gradient(180deg, #1a0010 0%, #010201 40%, #010201 100%);
+}
+
+.solid:hover .buttonInner {
+  background: linear-gradient(180deg, #2a0020 0%, #010201 40%, #010201 100%);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullWidth .buttonInner {
+  width: 100%;
+}
+
+@media (max-width: 639px) {
+  .haloButton {
+    border-radius: 24px;
+  }
+
+  .glowLayer {
+    border-radius: 24px;
+  }
+
+  .buttonInner {
+    border-radius: 24px;
+    min-height: 48px;
+  }
+
+  .md .buttonInner {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+  }
+
+  .sm .buttonInner {
+    padding: 0.55rem 1rem;
+    font-size: 0.5625rem;
+    min-height: 40px;
+  }
+
+  .auroraGlow {
+    inset: -6px -8px;
+    filter: blur(14px);
+    opacity: 0.32;
+  }
+
+  .outerRing {
+    inset: -2px -3px;
+  }
+}
+
+@media (min-width: 640px) {
+  .fullWidth {
+    width: auto;
+  }
+
+  .fullWidth .buttonInner {
+    width: auto;
+  }
+}

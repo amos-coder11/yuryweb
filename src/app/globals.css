@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+:root {
+  --yc-magenta: #e6007e;
+  --yc-magenta-dark: #b80063;
+  --yc-blue: #00b4ff;
+  --yc-blue-dark: #0077cc;
+  --yc-black: #0a0a0a;
+  --yc-white: #ffffff;
+  --yc-red-live: #e53935;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #141414;
+  --muted-foreground: #888888;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --card-foreground: #ffffff;
+  --muted: #1a1a1a;
+}
+
+@theme inline {
+  --color-yc-magenta: var(--yc-magenta);
+  --color-yc-magenta-dark: var(--yc-magenta-dark);
+  --color-yc-blue: var(--yc-blue);
+  --color-yc-black: var(--yc-black);
+  --color-yc-red-live: var(--yc-red-live);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-bebas);
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-100% - var(--gap)), 0, 0);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, calc(-100% - var(--gap)), 0);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--yc-black);
+  color: var(--yc-white);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+.page-aurora {
+  background:
+    radial-gradient(circle at 78% 12%, rgba(230, 0, 126, 0.22), transparent 30%),
+    radial-gradient(circle at 16% 88%, rgba(0, 180, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #070709 0%, #0b090d 52%, #07090b 100%);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 0.75px, transparent 0.75px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    rgba(8, 8, 10, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 60px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(230, 0, 126, 0.3);
+  transform: translateY(-2px);
+}
+
+.editorial-card {
+  background: #0a0a0c;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.editorial-card:hover {
+  border-color: rgba(230, 0, 126, 0.35);
+  transform: translateY(-2px);
+}
+
+.hero-bg-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Inspira UI — Liquid Glass (React port) */
+.liquid-glass-effect {
+  position: relative;
+  display: block;
+  opacity: 1;
+  border-radius: inherit;
+  background: hsl(0 0% 0% / var(--frost, 0.05));
+  box-shadow:
+    0 0 2px 1px color-mix(in oklch, white, transparent 90%) inset,
+    0 0 10px 4px color-mix(in oklch, white, transparent 95%) inset,
+    0 4px 16px rgba(17, 17, 26, 0.15),
+    0 8px 24px rgba(17, 17, 26, 0.1),
+    0 16px 56px rgba(17, 17, 26, 0.08),
+    0 4px 16px rgba(17, 17, 26, 0.08) inset,
+    0 8px 24px rgba(17, 17, 26, 0.06) inset;
+}
+
+.liquid-glass-slot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.liquid-glass-filter-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@supports not (backdrop-filter: url("#test")) {
+  .liquid-glass-effect {
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+  }
+}
+
+@keyframes pattern-to-top {
+  0% { background-position: 0 100%; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes pattern-to-bottom {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+.pattern-move {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.pattern-move-top { animation-name: pattern-to-top; }
+.pattern-move-bottom { animation-name: pattern-to-bottom; }
+.pattern-move-left { animation-name: pattern-to-top; }
+.pattern-move-right { animation-name: pattern-to-bottom; }
+
+/* Neo border — fucsia + azul */
+.neo-border {
+  position: relative;
+  padding: 2px;
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg,
+    var(--yc-magenta),
+    var(--yc-blue),
+    var(--yc-magenta),
+    var(--yc-blue)
+  );
+  background-size: 300% 300%;
+  animation: neo-border-flow 4s ease infinite;
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--yc-magenta) 70%, transparent),
+    0 0 20px color-mix(in srgb, var(--yc-blue) 50%, transparent),
+    0 0 40px color-mix(in srgb, var(--yc-magenta) 30%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--yc-blue) 20%, transparent);
+}
+
+.neo-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    var(--yc-magenta),
+    transparent 40%,
+    var(--yc-blue),
+    transparent 70%,
+    var(--yc-magenta)
+  );
+  background-size: 300% 300%;
+  animation: neo-border-flow 4s ease infinite reverse;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.neo-border-inner {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@keyframes neo-border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

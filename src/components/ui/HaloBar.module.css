@@ -1,0 +1,150 @@
+.haloBar {
+  --halo-radius: 18px;
+  --halo-inner-radius: 15px;
+  --halo-border: 2.5px;
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: var(--halo-radius);
+  isolation: isolate;
+}
+
+/* Borde visible — contorno nítido animado */
+.haloBar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--halo-radius);
+  padding: var(--halo-border);
+  background: linear-gradient(
+    120deg,
+    var(--yc-magenta),
+    var(--yc-blue),
+    #402fb5,
+    var(--yc-magenta),
+    var(--yc-blue)
+  );
+  background-size: 300% 300%;
+  animation: halo-bar-flow 6s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.haloBarSpin {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.haloBarSpin::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160%;
+  aspect-ratio: 1;
+  background: conic-gradient(
+    from 0deg,
+    var(--yc-magenta) 0%,
+    #402fb5 12%,
+    var(--yc-blue) 24%,
+    #dfa2da 36%,
+    var(--yc-magenta) 48%,
+    #18116a 60%,
+    var(--yc-blue) 72%,
+    var(--yc-magenta) 84%,
+    var(--yc-magenta) 100%
+  );
+  animation: halo-bar-spin 12s linear infinite;
+}
+
+.haloBarGlow {
+  position: absolute;
+  inset: -4px -6px;
+  border-radius: calc(var(--halo-radius) + 5px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.45;
+  filter: blur(10px);
+  background: linear-gradient(
+    105deg,
+    var(--yc-magenta),
+    #402fb5 35%,
+    var(--yc-blue) 65%,
+    var(--yc-magenta)
+  );
+  background-size: 220% 100%;
+  animation: halo-bar-flow 6s ease infinite;
+}
+
+.haloBar:hover::after {
+  background-size: 200% 200%;
+}
+
+.haloBar:hover .haloBarGlow {
+  opacity: 0.6;
+}
+
+.haloBarInner {
+  position: relative;
+  z-index: 1;
+  margin: var(--halo-border);
+  border-radius: var(--halo-inner-radius);
+  overflow: hidden;
+  background: rgba(1, 2, 1, 0.88);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@keyframes halo-bar-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes halo-bar-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 639px) {
+  .haloBar {
+    --halo-radius: 14px;
+    --halo-inner-radius: 12px;
+    --halo-border: 2px;
+  }
+
+  .haloBarGlow {
+    inset: -2px -4px;
+    opacity: 0.35;
+    filter: blur(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haloBar::after,
+  .haloBarSpin::before,
+  .haloBarGlow {
+    animation: none;
+  }
+}

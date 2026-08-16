@@ -1,0 +1,297 @@
+/* ══════════════════════════════════════════════════════════════════
+   ALFA VITAMINS × Yury Chacón — capa visual de la propuesta.
+
+   Hereda el motor de la web (dark, liquid glass, halo, Bebas/Montserrat)
+   y lo cruza con el código de color de ALFA VITAMINS. Todo va scopeado
+   bajo .alfa-doc para no tocar el resto del sitio.
+   ══════════════════════════════════════════════════════════════════ */
+
+.alfa-doc {
+  --alfa-green: #3ba93e;
+  --alfa-lime: #8fe04a;
+  --alfa-yellow: #f5e04b;
+  --alfa-deep: #050806;
+  --alfa-line: rgba(242, 246, 240, 0.11);
+  --alfa-line-2: rgba(242, 246, 240, 0.22);
+  --alfa-fog: rgba(242, 246, 240, 0.62);
+  --alfa-fog-2: rgba(242, 246, 240, 0.4);
+
+  position: relative;
+  background: var(--alfa-deep);
+  color: #f2f6f0;
+  scroll-behavior: smooth;
+}
+
+/* ── capas de fondo ─────────────────────────────────────────────── */
+.alfa-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.alfa-bg > * {
+  position: absolute;
+  inset: 0;
+}
+
+.alfa-aurora {
+  background:
+    radial-gradient(120% 90% at 78% 6%, rgba(59, 169, 62, 0.22) 0%, rgba(59, 169, 62, 0) 55%),
+    radial-gradient(90% 70% at 8% 94%, rgba(245, 224, 75, 0.12) 0%, rgba(245, 224, 75, 0) 58%),
+    radial-gradient(70% 60% at 50% 50%, rgba(230, 0, 126, 0.07) 0%, rgba(230, 0, 126, 0) 62%);
+}
+
+.alfa-grid {
+  background-image:
+    linear-gradient(var(--alfa-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--alfa-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.4;
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 40%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(80% 70% at 50% 40%, #000 20%, transparent 100%);
+}
+
+.alfa-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+}
+
+.alfa-vignette {
+  background: radial-gradient(78% 62% at 50% 42%, transparent 40%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+/* piso 3D en perspectiva */
+.alfa-floor {
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  bottom: -14%;
+  height: 58%;
+  background-image:
+    linear-gradient(rgba(143, 224, 74, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 224, 74, 0.22) 1px, transparent 1px);
+  background-size: 78px 78px;
+  transform: perspective(760px) rotateX(74deg);
+  transform-origin: 50% 100%;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 78%);
+  mask-image: linear-gradient(to top, #000, transparent 78%);
+}
+
+/* ── superficies ────────────────────────────────────────────────── */
+.alfa-glass {
+  position: relative;
+  border: 1px solid var(--alfa-line);
+  border-radius: 18px;
+  background: linear-gradient(
+    158deg,
+    rgba(242, 246, 240, 0.085) 0%,
+    rgba(242, 246, 240, 0.022) 42%,
+    rgba(242, 246, 240, 0.008) 100%
+  );
+  box-shadow:
+    0 30px 60px -30px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.5s ease;
+}
+.alfa-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 38%);
+}
+.alfa-glass-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(143, 224, 74, 0.34);
+  box-shadow:
+    0 40px 80px -34px rgba(0, 0, 0, 0.95),
+    0 0 44px -18px rgba(143, 224, 74, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* borde animado verde/amarillo — hermano del .neo-border magenta/azul */
+.alfa-neo {
+  position: relative;
+  padding: 2px;
+  border-radius: 22px;
+  background: linear-gradient(
+    120deg,
+    var(--alfa-yellow),
+    var(--alfa-lime),
+    var(--alfa-green),
+    var(--alfa-lime),
+    var(--alfa-yellow)
+  );
+  background-size: 300% 300%;
+  animation: alfa-flow 6s ease infinite;
+  box-shadow:
+    0 0 10px rgba(143, 224, 74, 0.45),
+    0 0 34px rgba(245, 224, 75, 0.28),
+    0 0 70px rgba(59, 169, 62, 0.2);
+}
+.alfa-neo-inner {
+  border-radius: 20px;
+  background: #070b08;
+  overflow: hidden;
+}
+
+@keyframes alfa-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* campo editable: dato contractual pendiente del texto original */
+.alfa-slot {
+  position: relative;
+  border: 1px dashed rgba(245, 224, 75, 0.42);
+  border-radius: 12px;
+  padding: 16px 16px 15px;
+  background: linear-gradient(180deg, rgba(245, 224, 75, 0.055), rgba(245, 224, 75, 0.012));
+}
+.alfa-slot > .alfa-slot-label {
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  padding: 0 8px;
+  background: #070b08;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 224, 75, 0.85);
+}
+
+/* pedestal de luz: los envases siempre viven sobre blanco */
+.alfa-podium {
+  position: relative;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 32%,
+    #ffffff 0%,
+    #f3f7f1 46%,
+    #d9e4d6 78%,
+    #bfcdbb 100%
+  );
+  box-shadow:
+    0 40px 70px -26px rgba(0, 0, 0, 0.85),
+    0 0 90px rgba(143, 224, 74, 0.18),
+    inset 0 -14px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ── rail lateral ───────────────────────────────────────────────── */
+.alfa-rail-dot {
+  position: relative;
+  display: block;
+  height: 2px;
+  width: 20px;
+  border-radius: 2px;
+  background: rgba(242, 246, 240, 0.22);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.alfa-rail-item[data-active="true"] .alfa-rail-dot {
+  width: 40px;
+  background: var(--alfa-lime);
+  box-shadow: 0 0 12px rgba(143, 224, 74, 0.8);
+}
+.alfa-rail-label {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.alfa-rail-item:hover .alfa-rail-label,
+.alfa-rail-item[data-active="true"] .alfa-rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── marquesina de producto ─────────────────────────────────────── */
+.alfa-marquee {
+  display: flex;
+  width: max-content;
+  animation: alfa-scroll 42s linear infinite;
+}
+.alfa-marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes alfa-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ── teléfono ───────────────────────────────────────────────────── */
+.alfa-phone {
+  position: relative;
+  border-radius: 40px;
+  background: #0a0d0b;
+  border: 2px solid #232a25;
+  box-shadow:
+    0 60px 90px -40px rgba(0, 0, 0, 0.95),
+    0 0 0 8px rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.alfa-phone-screen {
+  position: absolute;
+  inset: 7px;
+  border-radius: 33px;
+  overflow: hidden;
+  background: #000;
+}
+.alfa-tilt-l {
+  transform: perspective(1400px) rotateY(15deg) rotateX(4deg) rotateZ(-1.5deg);
+}
+.alfa-tilt-r {
+  transform: perspective(1400px) rotateY(-15deg) rotateX(4deg) rotateZ(1.5deg);
+}
+
+/* ── revelado al hacer scroll (sin JS) ──────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .alfa-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: alfa-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 26%;
+  }
+  @supports not (animation-timeline: view()) {
+    .alfa-reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+}
+@keyframes alfa-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* pulso del punto "en vivo" */
+.alfa-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.55;
+  animation: alfa-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes alfa-ping {
+  0% { transform: scale(0.7); opacity: 0.7; }
+  80%, 100% { transform: scale(1.9); opacity: 0; }
+}
+
+@media print {
+  .alfa-rail-wrap,
+  .alfa-scroll-hint {
+    display: none !important;
+  }
+}
